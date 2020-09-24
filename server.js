@@ -10,8 +10,14 @@ app.use(cookieParser());
 const MongoClient = require('mongodb').MongoClient;
 const mongouri = 'mongodb+srv://'+process.env.USER+':'+process.env.PASS+'@'+process.env.MONGOHOST;
 
+// トップ画面
 app.get('/', (request, response) => {
   response.sendFile(__dirname + '/views/index.html');
+});
+
+// 登録画面
+app.get('/signup', (request, response) => {
+  response.sendFile(__dirname + '/views/signup.html');
 });
 
 app.post('/signup', function(req, res){
@@ -24,6 +30,21 @@ app.post('/signup', function(req, res){
     col.insertOne(user, function(err, result) {
       res.redirect('/'); // リダイレクト
       client.close(); // DB を閉じる
+    });
+  });
+});
+
+app.post('/login', function(req, res){
+  const userName = req.body.userName;
+  const password = req.body.password;
+  MongoClient.connect(mongouri, function(error, client) {
+    const db = client.db(process.env.DB); // 対象 DB
+    const col = db.collection('accounts'); // 対象コレクション
+    col.findOne({name:{$eq:userName}, password:{$eq:password}}, function(err, user){
+      client.close();
+      if(user) {
+        
+      }
     });
   });
 });

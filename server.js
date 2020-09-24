@@ -1,34 +1,31 @@
-// server.js
-// where your node app starts
-
-// we've started you off with Express (https://expressjs.com/)
-// but feel free to use whatever libraries or frameworks you'd like through `package.json`.
-const express = require("express");
+const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static('public'));
 
-// our default array of dreams
-const dreams = [
-  "Find and count some sheep",
-  "Climb a really tall mountain",
-  "Wash the dishes"
-];
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
-// make all the files in 'public' available
-// https://expressjs.com/en/starter/static-files.html
-app.use(express.static("public"));
+const MongoClient = require('mongodb').MongoClient;
+const mongouri = 'mongodb+srv://'+process.env.USER+':'+process.env.PASS+'@'+process.env.MONGOHOST;
 
-// https://expressjs.com/en/starter/basic-routing.html
-app.get("/", (request, response) => {
-  response.sendFile(__dirname + "/views/index.html");
+app.get('/', (request, response) => {
+  response.sendFile(__dirname + '/views/index.html');
 });
 
-// send the default array of dreams to the webpage
-app.get("/dreams", (request, response) => {
-  // express helps us take JS objects and send them as JSON
-  response.json(dreams);
+app.post('/signup', function(req, res){
+  const userName = req.body.userName;
+  const password = req.body.password;
+  MongoClient.connect(mongouri, function(error, client) {
+    const db = client.db(process.env.DB); // 対象 DB
+    const col = db.collection('accounts'); // 対象コレクション
+    const user = {name: userName, password:password}; // 保存対象
+    col.insertOne(user, function(err, result) {
+      res.redirect('/'); // リダイレクト
+      client.close(); // DB を閉じる
+    });
+  });
 });
 
-// listen for requests :)
-const listener = app.listen(process.env.PORT, () => {
-  console.log("Your app is listening on port " + listener.address().port);
-});
+const listener = app.listen(process.env.PORT);

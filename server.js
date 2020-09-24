@@ -67,7 +67,6 @@ app.post('/signup', function(req, res){
 app.post('/login', function(req, res){
   const userName = req.body.userName;
   const password = req.body.password;
-  console.log(hashed(password));
   MongoClient.connect(mongouri, function(error, client) {
     const db = client.db(process.env.DB); // 対象 DB
     const col = db.collection('accounts'); // 対象コレクション

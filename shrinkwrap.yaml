@@ -1,6 +1,7 @@
 dependencies:
   body-parser: 1.19.0
   cookie-parser: 1.4.5
+  crypto: 1.0.1
   express: 4.17.1
   mongodb: 3.6.2
 packages:
@@ -90,6 +91,11 @@ packages:
     dev: false
     resolution:
       integrity: sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
+  /crypto/1.0.1:
+    deprecated: 'This package is no longer supported. It''s now a built-in Node module. If you''ve depended on crypto, you should switch to the one that''s built-in.'
+    dev: false
+    resolution:
+      integrity: sha512-VxBKmeNcqQdiUQUW2Tzq0t377b54N2bMtXO/qiLa+6eRRmmC4qT3D4OnTGoT/U6O9aklQ/jTwbOtRMTTY8G0Ig==
   /debug/2.6.9:
     dependencies:
       ms: 2.0.0
@@ -517,5 +523,6 @@ shrinkwrapVersion: 3
 specifiers:
   body-parser: ^1.19.0
   cookie-parser: ^1.4.5
+  crypto: ^1.0.1
   express: ^4.17.1
   mongodb: ^3.6.1

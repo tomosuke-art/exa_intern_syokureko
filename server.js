@@ -11,13 +11,38 @@ const MongoClient = require('mongodb').MongoClient;
 const mongouri = 'mongodb+srv://'+process.env.USER+':'+process.env.PASS+'@'+process.env.MONGOHOST;
 
 // トップ画面
-app.get('/', (request, response) => {
-  response.sendFile(__dirname + '/views/index.html');
+app.get('/', (req, res) => {
+  if(req.cookies.user) {
+    res.sendFile(__dirname + '/views/success.html');
+    return;
+  }
+
+  res.sendFile(__dirname + '/views/index.html');
 });
 
 // 登録画面
-app.get('/signup', (request, response) => {
-  response.sendFile(__dirname + '/views/signup.html');
+app.get('/signup', (req, res) => {
+  if(req.cookies.user) {
+    res.sendFile(__dirname + '/views/success.html');
+    return;
+  }
+
+  res.sendFile(__dirname + '/views/signup.html');
+});
+
+// ログイン失敗画面
+app.get('/failed', (req, res) => {
+  if(req.cookies.user) {
+    res.sendFile(__dirname + '/views/success.html');
+    return;
+  }
+
+  res.sendFile(__dirname + '/views/failed.html');
+});
+
+app.get('/logout', (req, res) => {
+  res.clearCookie('user'); // クッキーをクリア
+  res.redirect('/');
 });
 
 app.post('/signup', function(req, res){
@@ -40,10 +65,15 @@ app.post('/login', function(req, res){
   MongoClient.connect(mongouri, function(error, client) {
     const db = client.db(process.env.DB); // 対象 DB
     const col = db.collection('accounts'); // 対象コレクション
-    col.findOne({name:{$eq:userName}, password:{$eq:password}}, function(err, user){
+
+    const condition = {name:{$eq:userName}, password:{$eq:password}}; // ユーザ名とパスワードで検索する
+    col.findOne(condition, function(err, user){
       client.close();
       if(user) {
-        
+        res.cookie('user', user); // ヒットしたらクッキーに保存
+        res.redirect('/'); // リダイレクト
+      }else{
+        res.redirect('/failed'); // リダイレクト
       }
     });
   });

@@ -16,6 +16,9 @@ h1 {
   max-width: calc(100% - 5rem);
   line-height: 1.1;
 }
+li{
+  list-style: none;
+}
 /* 
 form {
   background-color: #eee;
@@ -79,6 +82,7 @@ header {
   height: 50px;
   line-height: 50px;
   font-size: 24px;
+  display: flex;
 }
 .header-icon {
   margin-left: 10px;

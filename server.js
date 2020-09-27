@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
     return;
   }
 
-  res.sendFile(__dirname + "/views/index.html");
+  res.sendFile(__dirname + "/views/login.html");
 });
 
 // 登録画面

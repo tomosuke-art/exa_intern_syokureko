@@ -127,7 +127,6 @@ app.post("/saveFood", function(req, res) {
 });
 
 app.get("/findFoods", function(req, res) {
-  console.log(req);
   MongoClient.connect(mongouri, function(error, client) {
     const db = client.db(process.env.DB); // 対象 DB
     const colUser = db.collection("foods"); // 対象コレクション

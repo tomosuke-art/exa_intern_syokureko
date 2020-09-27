@@ -21,8 +21,10 @@ li{
 }
 
 .login-form {
-  margin: 30px;
+  margin-top: 100px;
   padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
 }
 
 /* input {

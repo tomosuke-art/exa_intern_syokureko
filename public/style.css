@@ -19,14 +19,11 @@ h1 {
 li{
   list-style: none;
 }
-/* 
-form {
-  background-color: #eee;
-  display: grid;
-  grid-gap: 1em;
-  padding: 1em;
-  max-width: 40ch;
-} */
+
+.login-form {
+  margin: 30px;
+  padding: 20px;
+}
 
 /* input {
   border: 1px solid silver;
@@ -83,6 +80,14 @@ header {
   line-height: 50px;
   font-size: 24px;
   display: flex;
+  justify-content: space-between;
+}
+.headr-right{
+  margin-right: 40px;
+  font-size: 18px;
+}
+.logout:hover{
+  color: rgba(0,0,0,0.4);
 }
 .header-icon {
   margin-left: 10px;

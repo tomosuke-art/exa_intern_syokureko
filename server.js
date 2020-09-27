@@ -116,9 +116,9 @@ app.post("/saveFood", function(req, res) {
   req.on("end", function() {
     MongoClient.connect(mongouri, function(error, client) {
       const db = client.db(process.env.DB); // 対象 DB
-      const colUser = db.collection("foods"); // 対象コレクション
+      const colFood = db.collection("foods"); // 対象コレクション
       const food = JSON.parse(received); // 保存対象
-      colUser.insertOne(food, function(err, result) {
+      colFood.insertOne(food, function(err, result) {
         res.send(decodeURIComponent(result.insertedId)); // 追加したデータの ID を返す
         client.close(); // DB を閉じる
       });
@@ -129,13 +129,14 @@ app.post("/saveFood", function(req, res) {
 app.get("/findFoods", function(req, res) {
   MongoClient.connect(mongouri, function(error, client) {
     const db = client.db(process.env.DB); // 対象 DB
-    const colUser = db.collection("foods"); // 対象コレクション
+    const colFood = db.collection("foods"); // 対象コレクション
+    const colCookie = db.collection("accounts");
 
     // 検索条件（名前が「エクサくん」ではない）
     // 条件の作り方： https://docs.mongodb.com/manual/reference/operator/query/
-    const condition = { name: { $ne: "エクサくん" } };
+    const condition = {};
 
-    colUser.find(condition).toArray(function(err, foods) {
+    colFood.find(condition).toArray(function(err, foods) {
       res.json(foods); // レスポンスとしてユーザを JSON 形式で返却
       client.close(); // DB を閉じる
     });
@@ -151,11 +152,11 @@ app.post("/deleteFood", function(req, res) {
   req.on("end", function() {
     MongoClient.connect(mongouri, function(error, client) {
       const db = client.db(process.env.DB); // 対象 DB
-      const colUser = db.collection("foods"); // 対象コレクション
+      const colFood = db.collection("foods"); // 対象コレクション
       const target = JSON.parse(received); // 保存対象
       const oid = new ObjectID(target.id);
 
-      colUser.deleteOne({ _id: { $eq: oid } }, function(err, result) {
+      colFood.deleteOne({ _id: { $eq: oid } }, function(err, result) {
         res.sendStatus(200); // ステータスコードを返す
         client.close(); // DB を閉じる
       });
@@ -166,8 +167,8 @@ app.post("/deleteFood", function(req, res) {
 app.get("/deleteAll", function(req, res) {
   MongoClient.connect(mongouri, function(error, client) {
     const db = client.db(process.env.DB); // 対象 DB
-    const colUser = db.collection("foods"); // 対象コレクション
-    colUser.deleteMany({}, function(err, result) {
+    const colFood = db.collection("foods"); // 対象コレクション
+    colFood.deleteMany({}, function(err, result) {
       res.sendStatus(200); // ステータスコードを返す
       client.close(); // DB を閉じる
     });

@@ -2,12 +2,13 @@
 
 * {
   box-sizing: border-box;
+  color: #3F4031;
 }
 
 body {
-  font-family: sans-serif;
-  margin: 2em 1em;
-  line-height: 1.5em;
+  font-family: 'Comfortaa', cursive, 'Noto Sans JP', sans-serif;
+  background-color: #E6E6C3;
+  height: 100vh;
 }
 
 h1 {
@@ -21,10 +22,11 @@ li{
 }
 
 .login-form {
-  margin-top: 100px;
+  margin: 100px auto;
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
+  max-width: 500px;
 }
 
 /* input {

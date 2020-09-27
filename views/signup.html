@@ -1,18 +1,109 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A cool thing made with Glitch">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A cool thing made with Glitch" />
     <title>ログインテスト</title>
-    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <link
+      id="favicon"
+      rel="icon"
+      href="https://glitch.com/edit/favicon-app.ico"
+      type="image/x-icon"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;600&family=Noto+Sans+JP&display=swap"
+      rel="stylesheet"
+    />
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <!-- Moment.js -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
+      integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"
+      integrity="sha256-AdQN98MVZs44Eq2yTwtoKufhnU+uZ7v2kXnD5vqzZVo="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Tempus Dominus -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css"
+    />
+    <!--  font awsome     -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+      integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <form method="post" action="/signup">
-      <input type="text" name="userName" placeholder="ユーザ名"/>
-      <input type="password" name="password" placeholder="パスワード"/>
-      <input type="submit"/>
-    </form>
+    <header>
+      <nav class="header">
+        <div>
+          <a class="nav-link-tag" href="#">
+            <img
+              src="https://cdn.glitch.com/a267fb32-e42c-4f72-8fc4-9c938c2813ba%2Frice.svg?v=1601205270028"
+              class="header-icon"
+            />
+            食レコ
+          </a>
+        </div>
+<!--         <div class="headr-right">
+          <ul>
+            <li><a class="logout" href="/logout">ログアウト</a></li>
+          </ul>
+        </div> -->
+      </nav>
+    </header>
+    <main id="container">
+      <div class="login-form">
+         <h3>サインアップ</h3>
+        <form method="post" action="/signup">
+          <div class="form-group">
+            <label for="user-name" class="col-form-label">ユーザー名</label>
+            <input id="user-name" type="text" class="form-control" name="userName" placeholder="ユーザ名" />
+          </div>
+          <div class="form-group">
+            <label for="password" class="col-form-label">パスワード</label>
+            <input class="form-control" type="password" name="password" placeholder="パスワード" id="password" />
+          </div>
+
+          <input type="submit" class="btn" />
+        </form>
+      </div>
+    </main>
   </body>
+  
+<!--   <form method="post" action="/signup"> -->
 </html>

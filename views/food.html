@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>アプリケーション雛形</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;600&family=Noto+Sans+JP&display=swap"
+      rel="stylesheet"
+    />
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <!-- Moment.js -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
+      integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"
+      integrity="sha256-AdQN98MVZs44Eq2yTwtoKufhnU+uZ7v2kXnD5vqzZVo="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Tempus Dominus -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css"
+    />
+    <!--  font awsome     -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+      integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="header">
+        <a class="nav-link-tag" href="#">
+          <img
+            src="https://cdn.glitch.com/a267fb32-e42c-4f72-8fc4-9c938c2813ba%2Frice.svg?v=1601205270028"
+            class="header-icon"
+          />
+          食レコ
+        </a>
+      </nav>
+    </header>
+    <main id="container">
+      <button
+        type="button"
+        class="btn add-food-btn"
+        data-toggle="modal"
+        data-target="#exampleModal"
+        data-whatever="@mdo"
+      >
+        +Add
+      </button>
+      <input
+        type="button"
+        value="Reset"
+        onclick="deleteAll()"
+        class="btn delete-all-btn"
+      />
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Food</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="foodName" class="col-form-label">料理名</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="foodName"
+                    placeholder="例)スタミナ定食"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="kcal" class="col-form-label"
+                    >カロリー(kcal)</label
+                  >
+                  <input type="number" class="form-control" id="kcal" />
+                </div>
+                <div class="form-group">
+                  <label for="date" class="col-form-label">日付</label>
+                  <div
+                    class="input-group date"
+                    id="datetimepicker1"
+                    data-target-input="nearest"
+                  >
+                    <input
+                      type="text"
+                      class="form-control datetimepicker-input"
+                      data-target="#datetimepicker1"
+                      id="date"
+                    />
+                    <div
+                      class="input-group-append"
+                      data-target="#datetimepicker1"
+                      data-toggle="datetimepicker"
+                    >
+                      <div class="input-group-text">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="comment" class="col-form-label">一言メモ</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="comment"
+                    maxlength="20"
+                    placeholder="20字以内"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="food_img">画像</label>
+                  <input
+                    type="file"
+                    class="form-control-file"
+                    id="food_img"
+                    accept="image/*"
+                  />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <input
+                type="button"
+                value="Submit"
+                onclick="saveFood()"
+                data-dismiss="modal"
+                class="btn"
+              /><!-- 追加ボタン -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="list" class="foods-list"></div>
+      <!-- リスト表示部 -->
+    </main>
+
+    <script>
+      window.onload = findFoods; // 画面ロード時に実行
+
+      const listArea = document.getElementById("list"); // リスト表示部
+
+      // ユーザの保存
+      function saveFood() {
+        // 名前をテキストボックスから取得（要素.value）
+        const foodName = document.getElementById("foodName").value;
+        const kcal = document.getElementById("kcal").value;
+        const date = document.getElementById("date").value;
+        const comment = document.getElementById("comment").value;
+        const food_img = document.getElementById("food_img").files.item(0); // ファイルオブジェクト
+        let food_uri = null;
+
+        const reader = new FileReader(); // FileReader型のオブジェクトを生成
+        reader.onload = function() {
+          // 読み込み完了時の挙動を定義しておく
+          // console.log(reader.result); // reader.result が文字列化したデータ
+          food_uri = this.result;
+
+          // 取得した情報をもとにオブジェクトを作る
+          const food = {
+            name: foodName,
+            kcal: kcal,
+            date: date,
+            comment: comment,
+            food_img: food_uri
+          };
+
+          const url = "/saveFood"; // 通信先
+          const req = new XMLHttpRequest(); // 通信用オブジェクト
+          // console.log(req);
+          req.onreadystatechange = function() {
+            if (req.readyState == 4 && req.status == 200) {
+              // console.log(req.response);
+              addToList(foodName, kcal, date, comment, food_uri, req.response);
+            }
+          };
+          req.open("POST", url, true);
+          req.setRequestHeader("Content-Type", "application/json");
+          // console.log(food);
+          req.send(JSON.stringify(food)); // オブジェクトを文字列化して送信
+        };
+        reader.readAsDataURL(food_img); // ファイルオブジェクトの読み込みを実行
+      }
+
+      // リストを生成する
+      function addToList(foodName, kcal, date, comment, food_img, id) {
+        const foodDiv = document.createElement("div"); // 追加するユーザの div 要素
+        foodDiv.id = id; // ID を付与する
+        // 追加
+        foodDiv.classList.add("food-div");
+
+        const contentDiv = document.createElement("div");
+        contentDiv.classList.add("content-div");
+
+        const nameSpan = document.createElement("span");
+        nameSpan.innerText = "Food: " + foodName;
+        nameSpan.classList.add("name-span");
+
+        const kcalSpan = document.createElement("span");
+        kcalSpan.innerText = "Calorie: " + kcal + "kcal";
+        kcalSpan.classList.add("kcal-span");
+
+        const dateSpan = document.createElement("span");
+        dateSpan.innerText = "Date: " + date;
+        dateSpan.classList.add("date-span");
+
+        const commentSpan = document.createElement("span");
+        commentSpan.innerText = "Memo: " + comment;
+        commentSpan.classList.add("comment-span");
+
+        const foodImg = document.createElement("img");
+        // console.log(food_img);
+        foodImg.src = food_img;
+        foodImg.classList.add("food-img");
+
+        const delButton = document.createElement("button");
+        delButton.innerText = "Delete";
+        delButton.classList.add("del-btn");
+        delButton.onclick = function() {
+          deleteFood(id); // ID を利用して削除
+        };
+
+        const wrap = document.createElement("div");
+        wrap.classList.add("wrap");
+
+        contentDiv.appendChild(nameSpan); // userDiv に名前を追加
+        contentDiv.appendChild(kcalSpan);
+        contentDiv.appendChild(dateSpan);
+        contentDiv.appendChild(commentSpan);
+        contentDiv.appendChild(delButton); // foodDiv に削除ボタンを追加
+        wrap.appendChild(foodImg);
+        foodDiv.appendChild(wrap);
+        foodDiv.appendChild(contentDiv);
+        listArea.appendChild(foodDiv); // リストに foodDiv を追加
+      }
+
+      // 全ユーザの取得
+      function findFoods() {
+        const url = "/findFoods"; // 通信先
+        const req = new XMLHttpRequest(); // 通信用オブジェクト
+        const initialValue = document.getElementById("initial-value");
+
+        req.onreadystatechange = function() {
+          if (req.readyState == 4 && req.status == 200) {
+            const foods = JSON.parse(req.response);
+            for (let i in foods) {
+              const food = foods[i];
+
+              const foodName = food.name;
+              const kcal = food.kcal;
+              const date = food.date;
+              const comment = food.comment;
+              const foodImg = food.food_img;
+              // console.log(food.food_img);
+              const id = food._id;
+
+              //               if (listArea.hasChildNodes){
+              //                 console.log('子要素が見つかりました');
+              // //                 子要素が1つでもあったらremoveChildで初期表示の子要素を削除
+              //                     listArea.removeChild(initialValue);
+              //               }
+              addToList(foodName, kcal, date, comment, foodImg, id);
+            }
+          }
+        };
+        req.open("GET", url, true);
+        req.send();
+      }
+
+      function deleteFood(id) {
+        const food = { id: id };
+
+        const url = "/deleteFood"; // 通信先
+        const req = new XMLHttpRequest(); // 通信用オブジェクト
+
+        req.onreadystatechange = function() {
+          if (req.readyState == 4 && req.status == 200) {
+            const target = document.getElementById(id); // ID で要素を特定
+            target.parentNode.removeChild(target); // 親要素に自分を削除させる
+          }
+        };
+        req.open("POST", url, true);
+        req.setRequestHeader("Content-Type", "application/json");
+        req.send(JSON.stringify(food)); // オブジェクトを文字列化して送信
+      }
+
+      function deleteAll() {
+        const url = "/deleteAll";
+        const req = new XMLHttpRequest();
+        const confirmBtn = confirm(
+          "全データを削除します\n削除したデータは復元できません\n本当に削除してもよろしいですか？\n"
+        );
+        if (confirmBtn === true) {
+          req.onreadystatechange = function() {
+            if (req.readyState == 4 && req.status == 200) {
+              // console.log(req);
+
+              const deleteAllList = document.querySelector("#list");
+
+              while (deleteAllList.firstChild) {
+                deleteAllList.removeChild(deleteAllList.firstChild);
+              }
+            }
+          };
+        }
+        req.open("GET", url, true);
+        req.send();
+      }
+    </script>
+    <script type="text/javascript">
+      $(function() {
+        $("#datetimepicker1").datetimepicker({
+          format: "YYYY-MM-DD",
+          locale: "ja",
+          dayViewHeaderFormat: "YYYY年 MMM"
+        });
+      });
+    </script>
+  </body>
+</html>

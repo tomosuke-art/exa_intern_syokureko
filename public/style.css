@@ -16,25 +16,25 @@ h1 {
   max-width: calc(100% - 5rem);
   line-height: 1.1;
 }
-
+/* 
 form {
   background-color: #eee;
   display: grid;
   grid-gap: 1em;
   padding: 1em;
   max-width: 40ch;
-}
+} */
 
-input {
+/* input {
   border: 1px solid silver;
   display: block;
   font-size: 16px;
   margin-bottom: 10px;
   padding: 5px;
   width: 100%;
-}
+} */
 
-form button {
+/* form button {
   background-color: #bbbbf2;
   border: 2px solid currentColor;
   border-radius: .25em;
@@ -43,14 +43,261 @@ form button {
   line-height: 1.4em;
   padding: 0.25em 1em;
   max-width: 20ch;
-}
+} */
 
-form button:hover {
+/* form button:hover {
   background-color: lavender;
-}
+} */
 
 footer {
   margin-top: 3em;
   padding-top: 1.5em;
   border-top: 1px solid lightgrey;
+}
+
+
+/*  */
+
+
+body {
+  font-family: 'Comfortaa', cursive, 'Noto Sans JP', sans-serif;
+  background-color: #E6E6C3;
+  height: 100vh;
+}
+
+/*====================================   header   ========================================= */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 101;
+}
+
+.header {
+  background-color: #548766;
+  height: 50px;
+  line-height: 50px;
+  font-size: 24px;
+}
+.header-icon {
+  margin-left: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.nav-link-tag {
+  color: white;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+/*===================================   btn   ==============================================  */
+
+
+.btn {
+  display: inline-block;
+  text-align: center; /* 文字位置   */
+  cursor: pointer; /* カーソル   */
+  padding: 8px 8px; /* 余白       */
+  background: #548766; /* 背景色     */
+  color: #ffffff; /* 文字色     */
+  line-height: 1em; /* 1行の高さ  */
+  transition: 0.3s; /* なめらか変化 */
+  box-shadow: 2px 2px 2px #666666; /* 影の設定 */
+  border: 2px solid #548766; /*枠の指定*/
+}
+.btn:hover {
+  box-shadow: none; /* カーソル時の影消去 */
+  color: #548766; /* 背景色     */
+  background: #ffffff; /* 文字色     */
+}
+
+.delete-all-btn {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: #5A554C;
+  border: 2px solid #5A554C; /*枠の指定*/
+}
+.delete-all-btn:hover{
+  color: #5A554C;
+}
+
+.add-food-btn {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 100;
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+}
+
+.del-btn {
+/*   position: absolute; */
+/*   bottom: 0px; */
+/*   right: 0px; */
+  margin-top: 10px;
+  margin-left: 150px;
+  display: inline-block;
+  border-radius: 5px; /* 角丸       */
+  text-align: center; /* 文字位置   */
+  cursor: pointer; /* カーソル   */
+  background: #5A554C; /* 背景色     */
+  color: #EEEEEE; /* 文字色     */
+  line-height: 1em; /* 1行の高さ  */
+  transition: 0.3s; /* なめらか変化 */
+  box-shadow: 1px 1px 1px #666666; /* 影の設定 */
+  border: 1px solid #5A554C; /* 枠の指定 */
+}
+.del-btn:hover {
+  box-shadow: none; /* カーソル時の影消去 */
+  color: #5A554C;
+  background: #ffffff;
+}
+
+/*===================================   container   ==============================================  */
+#container {
+  margin: 50px auto 0;
+  width: 90%;
+}
+
+/*===================================   main   ==============================================  */
+#list {
+  width: 100%;
+}
+.food-div {
+  width: auto;
+  /*   border: 1px solid rgba(0, 0, 0, 0.5); */
+  margin: 2px;
+  padding: 10px;
+  border-radius: 20px;
+  text-align: center;
+  background-color: #EEEEEE;
+  /*   display: flex;
+  justify-content: space-between; */
+}
+
+.food-img {
+  margin: 10px;
+  width: 200px;
+  height: 200px;
+}
+
+/* ========= content-div =============== */
+.content-div {
+  margin: 0 auto;
+  position: relative;
+  padding-left: 10px;
+}
+.name-span {
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+  width: auto;
+}
+.kcal-span {
+  display: block;
+}
+.date-span {
+  display: block;
+}
+.comment-span{
+  display: block;
+}
+
+/*======================================　　レスポンシブ(768px以上)　タブレット　============================================  */
+
+@media screen and (min-width: 768px) {
+  #list {
+    display: flex;
+    flex-flow: row wrap;
+    /*     justify-content: center;  */
+  }
+  .food-div {
+    width: 340px;
+    height: 100%;
+    padding: 10px;
+  }
+
+  .add-food-btn {
+    bottom: 15px;
+    right: 15px;
+    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+  }
+
+  .header {
+    height: 64px;
+    line-height: 64px;
+    font-size: 28px;
+  }
+  .header-icon {
+    margin-left: 40px;
+    width: 40px;
+    height: 40px;
+  }
+  #container {
+    margin-top: 64px;
+  }
+}
+
+/*======================================　　レスポンシブ(1024px以上)　デスクトップ　============================================  */
+@media screen and (min-width: 1024px) {
+  .food-div {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    width: 450px;
+    paddng: 10px;
+  }
+
+  .content-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .add-food-btn {
+    width: 90px;
+    height: 90px;
+    border-radius: 90px;
+  }
+  
+  .del-btn{
+    margin-left: 100px;
+    margin-top: 30px;
+  }
+}
+
+/*======================================　　レスポンシブ(1440px以上)　デスクトップ　============================================  */
+@media screen and (min-width: 1440px) {
+  .food-div {
+    width: 33%;
+    paddng: 10px;
+  }
+  .food-img {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+/*======================================　　レスポンシブ(1700px以上)　デスクトップ　============================================  */
+@media screen and (min-width: 1700px) {
+  .food-div {
+    width: 33%;
+  }
+
+  .food-img {
+    width: 250px;
+    height: 250px;
+  }
+  .content-div {
+    font-size: 18px;
+  }
 }

@@ -7,13 +7,15 @@ app.use(express.static('public'));
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
+const mongodb = require('mongodb');
 const MongoClient = require('mongodb').MongoClient;
 const mongouri = 'mongodb+srv://'+process.env.USER+':'+process.env.PASS+'@'+process.env.MONGOHOST;
+const ObjectID = mongodb.ObjectID;
 
 // トップ画面
 app.get('/', (req, res) => {
   if(req.cookies.user) {
-    res.sendFile(__dirname + '/views/success.html');
+    res.sendFile(__dirname + '/views/food.html');
     return;
   }
 
@@ -23,7 +25,7 @@ app.get('/', (req, res) => {
 // 登録画面
 app.get('/signup', (req, res) => {
   if(req.cookies.user) {
-    res.sendFile(__dirname + '/views/success.html');
+    res.sendFile(__dirname + '/views/food.html');
     return;
   }
 
@@ -33,7 +35,7 @@ app.get('/signup', (req, res) => {
 // ログイン失敗画面
 app.get('/failed', (req, res) => {
   if(req.cookies.user) {
-    res.sendFile(__dirname + '/views/success.html');
+    res.sendFile(__dirname + '/views/food.html');
     return;
   }
 
@@ -98,3 +100,77 @@ function hashed(password) {
 }
 
 const listener = app.listen(process.env.PORT);
+
+
+// success 
+
+
+app.post('/saveFood', function(req, res){
+  let received = '';
+  req.setEncoding('utf8');
+//   クライアントからデータ取得時に発生するイベント
+  req.on('data', function(chunk) {
+    received += chunk;
+  });
+  req.on('end', function() {
+    MongoClient.connect(mongouri, function(error, client) {
+      const db = client.db(process.env.DB); // 対象 DB
+      const colUser = db.collection('foods'); // 対象コレクション
+      const food = JSON.parse(received); // 保存対象
+      colUser.insertOne(food, function(err, result) {
+        res.send(decodeURIComponent(result.insertedId)); // 追加したデータの ID を返す
+        client.close(); // DB を閉じる
+      });
+    });
+  });
+});
+
+app.get('/findFoods', function(req, res){
+  MongoClient.connect(mongouri, function(error, client) {
+    const db = client.db(process.env.DB); // 対象 DB
+    const colUser = db.collection('foods'); // 対象コレクション
+
+    // 検索条件（名前が「エクサくん」ではない）
+    // 条件の作り方： https://docs.mongodb.com/manual/reference/operator/query/
+    const condition = {name:{$ne:'エクサくん'}};
+
+    colUser.find(condition).toArray(function(err, foods) {
+      res.json(foods); // レスポンスとしてユーザを JSON 形式で返却
+      client.close(); // DB を閉じる
+    });
+  });
+});
+
+app.post('/deleteFood', function(req, res){
+  let received = '';
+  req.setEncoding('utf8');
+  req.on('data', function(chunk) {
+    received += chunk;
+  });
+  req.on('end', function() {
+    MongoClient.connect(mongouri, function(error, client) {
+      const db = client.db(process.env.DB); // 対象 DB
+      const colUser = db.collection('foods'); // 対象コレクション
+      const target = JSON.parse(received); // 保存対象
+      const oid = new ObjectID(target.id);
+
+      colUser.deleteOne({_id:{$eq:oid}}, function(err, result) {
+        res.sendStatus(200); // ステータスコードを返す
+        client.close(); // DB を閉じる
+      });
+    });
+  });
+});
+
+app.get('/deleteAll', function(req, res){
+  MongoClient.connect(mongouri, function(error, client) {
+    const db = client.db(process.env.DB); // 対象 DB
+    const colUser = db.collection('foods'); // 対象コレクション
+    colUser.deleteMany({}, function(err, result) {
+      res.sendStatus(200); // ステータスコードを返す
+      client.close(); // DB を閉じる
+    });
+  });
+});
+
+

@@ -21,12 +21,17 @@ li{
   list-style: none;
 }
 
-.login-form {
+.txt-form {
   margin: 100px auto;
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
   max-width: 500px;
+}
+
+.signup{
+  margin-top: 20px;
+  backgound-color: #5A554C!important;
 }
 
 /* input {
@@ -222,6 +227,8 @@ a:hover {
 .comment-span{
   display: block;
 }
+
+
 
 /*======================================　　レスポンシブ(768px以上)　タブレット　============================================  */
 

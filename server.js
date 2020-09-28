@@ -105,7 +105,9 @@ function hashed(password) {
   return value;
 }
 
-app.get('/findUser',function(res,req){
+app.get('/findUser',function(req,res){
+  // console.log(req.cookies.user);
+  // res.sendStatus(200);
   MongoClient.connect(mongouri, function(error, client) {
     const db = client.db(process.env.DB); // 対象 DB
     const colUser = db.collection("accounts");

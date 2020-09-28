@@ -202,7 +202,7 @@
     </main>
 
     <script>
-      window.addEventListener('load', findFoods()); // 画面ロード時に実行
+      // window.addEventListener('load', findFoods()); // 画面ロード時に実行
       window.addEventListener('load', findUser()); // 画面ロード時に実行
 
       const listArea = document.getElementById("list"); // リスト表示部
@@ -210,18 +210,18 @@
             // 全ユーザの取得
       function findUser() {
         console.log('findUser');
-        // const url = "/findUser"; // 通信先
-        // const req = new XMLHttpRequest(); // 通信用オブジェク
-        // const userName = document.getElementById('user-name');
-        // req.onreadystatechange = function() {
-        //   if (req.readyState == 4 && req.status == 200) {
-        //     const accounts = JSON.parse(req.response);
-        //     console.log(accounts[0].name);
-        //     userName.innerText = accounts[0].name;
-        //   }
-        // };
-        // req.open("GET", url, true);
-        // req.send();
+        const url = "/findUser"; // 通信先
+        const req = new XMLHttpRequest(); // 通信用オブジェク
+        const userName = document.getElementById('user-name');
+        req.onreadystatechange = function() {
+          if (req.readyState == 4 && req.status == 200) {
+            const accounts = JSON.parse(req.response);
+            console.log(accounts[0].name);
+            userName.innerText = accounts[0].name;
+          }
+        };
+        req.open("GET", url, true);
+        req.send();
       }
 
       // ユーザの保存
@@ -321,33 +321,33 @@
       // 全ユーザの取得
       function findFoods() {
                 console.log('findFood');
-//         const url = "/findFoods"; // 通信先
-//         const req = new XMLHttpRequest(); // 通信用オブジェクト
-//         const initialValue = document.getElementById("initial-value");
+        const url = "/findFoods"; // 通信先
+        const req = new XMLHttpRequest(); // 通信用オブジェクト
+        const initialValue = document.getElementById("initial-value");
 
-//         req.onreadystatechange = function() {
-//           if (req.readyState == 4 && req.status == 200) {
-//             const foods = JSON.parse(req.response);
-//             for (let i in foods) {
-//               const food = foods[i];
+        req.onreadystatechange = function() {
+          if (req.readyState == 4 && req.status == 200) {
+            const foods = JSON.parse(req.response);
+            for (let i in foods) {
+              const food = foods[i];
 
-//               const foodName = food.name;
-//               const kcal = food.kcal;
-//               const date = food.date;
-//               const comment = food.comment;
-//               const foodImg = food.food_img;
-//               // const userId = 
-//               // console.log(food.food_img);
-//               const id = food._id;
+              const foodName = food.name;
+              const kcal = food.kcal;
+              const date = food.date;
+              const comment = food.comment;
+              const foodImg = food.food_img;
+              // const userId = 
+              // console.log(food.food_img);
+              const id = food._id;
 
-//               //               if (listArea.hasChildNodes){
-//               //                 console.log('子要素が見つかりました');
-//               // //                 子要素が1つでもあったらremoveChildで初期表示の子要素を削除
-//               //                     listArea.removeChild(initialValue);
-//               //               }
-//               addToList(foodName, kcal, date, comment, foodImg, id);
-//             }
-//           }
+              //               if (listArea.hasChildNodes){
+              //                 console.log('子要素が見つかりました');
+              // //                 子要素が1つでもあったらremoveChildで初期表示の子要素を削除
+              //                     listArea.removeChild(initialValue);
+              //               }
+              addToList(foodName, kcal, date, comment, foodImg, id);
+            }
+          }
         };
         req.open("GET", url, true);
         req.send();

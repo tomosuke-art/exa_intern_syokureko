@@ -228,6 +228,27 @@ a:hover {
   display: block;
 }
 
+.right{
+  display: flex;
+  font-size: 14px;
+}
+.user{
+  margin-right: 10px;
+  color: #fff;
+  font-size: 12px;
+}
+
+@media screen and (min-width: 450px){
+  .right{
+  display: flex;
+  font-size: 14px;
+}
+.user{
+  margin-right: 10px;
+  color: #fff;
+  font-size: 12px;
+}
+}
 
 
 /*======================================　　レスポンシブ(768px以上)　タブレット　============================================  */
@@ -324,11 +345,5 @@ a:hover {
 
 /* user name */
 
-.right{
-  display: flex;
-}
-.user{
-  margin-right: 10px;
-  color: #fff;
-}
+
 

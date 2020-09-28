@@ -4,6 +4,8 @@
 に参加して作成した web アプリケーションです。
 
 ![syokurepo](https://user-images.githubusercontent.com/66266385/94418679-aba30880-01bc-11eb-9f53-312589a6b008.jpg)
+![syokurepo_form](https://user-images.githubusercontent.com/66266385/94418862-ed33b380-01bc-11eb-8adf-d50ee3ec3198.jpg)
+
 ## 開発環境
 - エディタ: Glitch
 - DB: MongoDB

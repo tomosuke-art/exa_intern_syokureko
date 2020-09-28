@@ -1,9 +1,10 @@
-# hello-express
+# Exa インターン作品
 
-A server that serves a webpage, its resources, and some data
+(株)exa の 5days インターン(デザインスプリント 1 日+JS 講義 2 日+開発 2 日)
+に参加して作成した web アプリケーションです。
 
 
-## Your Project
+## 毎日の食事を記録する Web アプリ「食レコ」
 
 On the front-end,
 
@@ -19,7 +20,6 @@ On the back-end,
 - safely store app secrets in `.env` (nobody can see this but you and people you invite)
 
 Click `Show` in the header to see your app live. Updates to your code will instantly deploy.
-
 
 ## Made by [Glitch](https://glitch.com/)
 

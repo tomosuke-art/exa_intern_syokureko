@@ -196,8 +196,7 @@
         </div>
       </div>
 
-      <div id="list" class="foods-list">
-      </div>
+      <div id="list" class="foods-list"></div>
       <!-- リスト表示部 -->
     </main>
 
@@ -356,19 +355,20 @@
         const confirmBtn = confirm(
           "全データを削除します\n削除したデータは復元できません\n本当に削除してもよろしいですか？\n"
         );
-        if (confirmBtn === true) {
-          req.onreadystatechange = function() {
-            if (req.readyState == 4 && req.status == 200) {
-              // console.log(req);
-
-              const deleteAllList = document.querySelector("#list");
-
-              while (deleteAllList.firstChild) {
-                deleteAllList.removeChild(deleteAllList.firstChild);
-              }
-            }
-          };
+        if (confirmBtn === false) {
+          return;
         }
+        req.onreadystatechange = function() {
+          if (req.readyState == 4 && req.status == 200) {
+            // console.log(req);
+
+            const deleteAllList = document.querySelector("#list");
+
+            while (deleteAllList.firstChild) {
+              deleteAllList.removeChild(deleteAllList.firstChild);
+            }
+          }
+        };
         req.open("GET", url, true);
         req.send();
       }

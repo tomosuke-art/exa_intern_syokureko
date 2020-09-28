@@ -3,6 +3,7 @@
 (株)exa の 5days インターン(デザインスプリント 1 日+JS 講義 2 日+開発 2 日)
 に参加して作成した web アプリケーションです。
 
+![syokurepo](https://user-images.githubusercontent.com/66266385/94418679-aba30880-01bc-11eb-9f53-312589a6b008.jpg)
 ## 開発環境
 - エディタ: Glitch
 - DB: MongoDB

@@ -1,30 +1,26 @@
-# Exa インターン作品
+# Exa インターン作品 毎日の食事を記録する Web アプリ「食レコ」
 
 (株)exa の 5days インターン(デザインスプリント 1 日+JS 講義 2 日+開発 2 日)
 に参加して作成した web アプリケーションです。
 
+## 開発環境
+- エディタ: Glitch
+- DB: MongoDB
+- バックエンド: node.js 
+- フロントエンド: HTML,CSS,Bootstrap4,Javascript
 
-## 毎日の食事を記録する Web アプリ「食レコ」
+## 背景
+- コロナで体重増加
+- 前日食べたものを忘れがち(重症)
 
-On the front-end,
+**=>食事を管理/記録するアプリを作成する**
 
-- Edit `views/index.html` to change the content of the webpage
-- `public/client.js` is the javacript that runs when you load the webpage
-- `public/style.css` is the styles for `views/index.html`
-- Drag in `assets`, like images or music, to add them to your project
+***
+(注)MongoDBを使用する際に環境変数を使用していますので、
+ローカルで動かす際は.envファイルをrootディレクトリに作成しMongoDBの環境変数を入力してください。
 
-On the back-end,
 
-- your app starts at `server.js`
-- add frameworks and packages in `package.json`
-- safely store app secrets in `.env` (nobody can see this but you and people you invite)
 
-Click `Show` in the header to see your app live. Updates to your code will instantly deploy.
 
-## Made by [Glitch](https://glitch.com/)
 
-**Glitch** is the friendly community where you'll build the app of your dreams. Glitch lets you instantly create, remix, edit, and host an app, bot or site, and you can invite collaborators or helpers to simultaneously edit code with you.
 
-Find out more [about Glitch](https://glitch.com/about).
-
-( ᵔ ᴥ ᵔ )

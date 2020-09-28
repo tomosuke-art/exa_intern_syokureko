@@ -71,7 +71,8 @@
           </a>
         </div>
         <div class="headr-right">
-          <ul>
+          <ul class="right">
+            <li id="user-name">username</li>
             <li><a class="logout" href="/logout">ログアウト</a></li>
           </ul>
         </div>
@@ -202,25 +203,24 @@
 
     <script>
       window.onload = findFoods; // 画面ロード時に実行
+      window.onload = findUser;
 
       const listArea = document.getElementById("list"); // リスト表示部
       
-      //       // 全ユーザの取得
-      // function findFoods() {
-      //   const url = "/findUser"; // 通信先
-      //   const req = new XMLHttpRequest(); // 通信用オブジェク
-      //   req.onreadystatechange = function() {
-      //     if (req.readyState == 4 && req.status == 200) {
-      //       const accounts = JSON.parse(req.response);
-      //       for (let i in foods) {
-      //         const food = foods[i];
-      //         addToList(foodName, kcal, date, comment, foodImg, id);
-      //       }
-      //     }
-      //   };
-      //   req.open("GET", url, true);
-      //   req.send();
-      // }
+            // 全ユーザの取得
+      function findUser() {
+        const url = "/findUser"; // 通信先
+        const req = new XMLHttpRequest(); // 通信用オブジェク
+        const userName = document.createElement('div');
+        req.onreadystatechange = function() {
+          if (req.readyState == 4 && req.status == 200) {
+            const accounts = JSON.parse(req.response);
+            
+          }
+        };
+        req.open("GET", url, true);
+        req.send();
+      }
 
       // ユーザの保存
       function saveFood() {

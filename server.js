@@ -105,17 +105,17 @@ function hashed(password) {
   return value;
 }
 
-// app.get('/findUser',function(res,req){
-//   MongoClient.connect(mongouri, function(error, client) {
-//     const db = client.db(process.env.DB); // 対象 DB
-//     const colUser = db.collection("accounts");
-//     const condition = {};
-//     colUser.find(condition).toArray(function(err, accounts) {
-//       res.json(accounts); // レスポンスとしてユーザを JSON 形式で返却
-//       client.close(); // DB を閉じる
-//     });
-//   });
-// });
+app.get('/findUser',function(res,req){
+  MongoClient.connect(mongouri, function(error, client) {
+    const db = client.db(process.env.DB); // 対象 DB
+    const colUser = db.collection("accounts");
+    const condition = {};
+    colUser.find(condition,{name:1}).toArray(function(err, accounts) {
+      res.json(accounts); // レスポンスとしてユーザを JSON 形式で返却
+      client.close(); // DB を閉じる
+    });
+  });
+});
 
 
 // Foodページ

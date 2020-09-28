@@ -202,8 +202,8 @@
     </main>
 
     <script>
-      window.onload = findFoods; // 画面ロード時に実行
-      window.onload = findUser;
+      window.addEventListener('load',findUser);
+      window.addEventListener('load', findFoods); // 画面ロード時に実行
 
       const listArea = document.getElementById("list"); // リスト表示部
       
@@ -211,11 +211,12 @@
       function findUser() {
         const url = "/findUser"; // 通信先
         const req = new XMLHttpRequest(); // 通信用オブジェク
-        const userName = document.createElement('div');
+        const userName = document.getElementById('user-name');
         req.onreadystatechange = function() {
           if (req.readyState == 4 && req.status == 200) {
             const accounts = JSON.parse(req.response);
-            
+            console.log(accounts[0].name);
+            userName.innerText = accounts[0].name;
           }
         };
         req.open("GET", url, true);

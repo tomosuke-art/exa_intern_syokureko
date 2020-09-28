@@ -170,7 +170,9 @@ app.get("/deleteAll", function(req, res) {
   MongoClient.connect(mongouri, function(error, client) {
     const db = client.db(process.env.DB); // 対象 DB
     const colFood = db.collection("foods"); // 対象コレクション
-    colFood.deleteMany({}, function(err, result) {
+    
+    const condition = {user_id: {$eq: req.cookies.user._id}};
+    colFood.deleteMany(condition, function(err, result) {
       res.sendStatus(200); // ステータスコードを返す
       client.close(); // DB を閉じる
     });

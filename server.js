@@ -118,6 +118,7 @@ app.post("/saveFood", function(req, res) {
       const db = client.db(process.env.DB); // 対象 DB
       const colFood = db.collection("foods"); // 対象コレクション
       const food = JSON.parse(received); // 保存対象
+      food.user_id = req.cookies.user._id;
       colFood.insertOne(food, function(err, result) {
         res.send(decodeURIComponent(result.insertedId)); // 追加したデータの ID を返す
         client.close(); // DB を閉じる
@@ -134,7 +135,8 @@ app.get("/findFoods", function(req, res) {
      
     // 検索条件（名前が「エクサくん」ではない）
     // 条件の作り方： https://docs.mongodb.com/manual/reference/operator/query/
-    const condition = {name:{$eq:'山田'}};
+    // const oId = new ObjectID(req.cookies.user._id);
+    const condition = {user_id: {$eq: req.cookies.user._id}};
 
     colFood.find(condition).toArray(function(err, foods) {
       res.json(foods); // レスポンスとしてユーザを JSON 形式で返却

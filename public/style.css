@@ -322,6 +322,13 @@ a:hover {
   }
 }
 
+/* user name */
+
 .right{
   display: flex;
 }
+.user{
+  margin-right: 10px;
+  color: #fff;
+}
+

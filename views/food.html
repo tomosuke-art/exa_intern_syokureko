@@ -72,7 +72,7 @@
         </div>
         <div class="headr-right">
           <ul class="right">
-            <li id="user-name">username</li>
+            <span style="color: white;">ユーザー：</span><li id="user-name" class="user">username</li>
             <li><a class="logout" href="/logout">ログアウト</a></li>
           </ul>
         </div>
@@ -358,7 +358,13 @@
 
         const url = "/deleteFood"; // 通信先
         const req = new XMLHttpRequest(); // 通信用オブジェクト
-
+        const confirmBtn = confirm(
+          "全データを削除します\n削除したデータは復元できません\n本当に削除してもよろしいですか？\n"
+        );
+        if (confirmBtn === false) {
+          return;
+        }
+        
         req.onreadystatechange = function() {
           if (req.readyState == 4 && req.status == 200) {
             const target = document.getElementById(id); // ID で要素を特定

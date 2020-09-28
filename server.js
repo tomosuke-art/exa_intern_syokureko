@@ -134,7 +134,7 @@ app.get("/findFoods", function(req, res) {
      
     // 検索条件（名前が「エクサくん」ではない）
     // 条件の作り方： https://docs.mongodb.com/manual/reference/operator/query/
-    const condition = {};
+    const condition = {name:{$eq:'山田'}};
 
     colFood.find(condition).toArray(function(err, foods) {
       res.json(foods); // レスポンスとしてユーザを JSON 形式で返却

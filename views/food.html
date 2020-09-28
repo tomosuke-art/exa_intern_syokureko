@@ -209,15 +209,15 @@
       
             // 全ユーザの取得
       function findUser() {
-        console.log('findUser');
+        // console.log('findUser');
         const url = "/findUser"; // 通信先
         const req = new XMLHttpRequest(); // 通信用オブジェク
         const userName = document.getElementById('user-name');
         req.onreadystatechange = function() {
           if (req.readyState == 4 && req.status == 200) {
             const accounts = JSON.parse(req.response);
-            console.log(accounts[0].name);
-            userName.innerText = accounts[0].name;
+            // console.log(accounts[0].name);
+            userName.innerText = accounts.name;
           }
         };
         req.open("GET", url, true);

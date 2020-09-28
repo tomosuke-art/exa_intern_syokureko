@@ -106,17 +106,17 @@ function hashed(password) {
 }
 
 app.get('/findUser',function(req,res){
-  // res.json(req.cookies.user);
+  res.json(req.cookies.user);
   // res.sendStatus(200);
-  MongoClient.connect(mongouri, function(error, client) {
-    const db = client.db(process.env.DB); // 対象 DB
-    const colUser = db.collection("accounts");
-    const condition = {};
-    colUser.find(condition,{name:1, password: 0}).toArray(function(err, accounts) {
-      res.json(accounts); // レスポンスとしてユーザを JSON 形式で返却
-      client.close(); // DB を閉じる
-    });
-  });
+  // MongoClient.connect(mongouri, function(error, client) {
+  //   const db = client.db(process.env.DB); // 対象 DB
+  //   const colUser = db.collection("accounts");
+  //   const condition = {};
+  //   colUser.find(condition,{name:1, password: 0}).toArray(function(err, accounts) {
+  //     res.json(accounts); // レスポンスとしてユーザを JSON 形式で返却
+  //     client.close(); // DB を閉じる
+  //   });
+  // });
 });
 
 

@@ -131,7 +131,7 @@ app.get("/findFoods", function(req, res) {
     const db = client.db(process.env.DB); // 対象 DB
     const colFood = db.collection("foods"); // 対象コレクション
     const colCookie = db.collection("accounts");
-
+     
     // 検索条件（名前が「エクサくん」ではない）
     // 条件の作り方： https://docs.mongodb.com/manual/reference/operator/query/
     const condition = {};

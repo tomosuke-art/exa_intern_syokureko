@@ -164,10 +164,10 @@ app.get("/findFoods", function(req, res) {
 app.post("/deleteFood", function(req, res) {
   let received = "";
   req.setEncoding("utf8");
-  req.on("data", function(chunk) {
+  req.on("data", function(chunk) {  //クライアントからデータを受け取ると発生
     received += chunk;
   });
-  req.on("end", function() {
+  req.on("end", function() { //データの受け取りが完了すると発生
     MongoClient.connect(mongouri, function(error, client) {
       const db = client.db(process.env.DB); // 対象 DB
       const colFood = db.collection("foods"); // 対象コレクション

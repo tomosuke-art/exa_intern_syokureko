@@ -78,6 +78,7 @@
         </div>
       </nav>
     </header>
+    
     <main id="container">
       <button
         type="button"
@@ -217,14 +218,15 @@
           if (req.readyState == 4 && req.status == 200) {
             const accounts = JSON.parse(req.response);
             // console.log(accounts[0].name);
-            userName.innerText = accounts.name;
+            userName.innerText = accounts.name; //自分のユーザーネームが入る
+          
           }
         };
         req.open("GET", url, true);
         req.send();
       }
 
-      // ユーザの保存
+      // 記録する食べ物の保存
       function saveFood() {
         // 名前をテキストボックスから取得（要素.value）
         const foodName = document.getElementById("foodName").value;
@@ -353,6 +355,7 @@
         req.send();
       }
 
+      //　記録一つを削除
       function deleteFood(id) {
         const food = { id: id };
 
@@ -376,6 +379,7 @@
         req.send(JSON.stringify(food)); // オブジェクトを文字列化して送信
       }
 
+      //　記録全てを一括削除
       function deleteAll() {
         const url = "/deleteAll";
         const req = new XMLHttpRequest();
